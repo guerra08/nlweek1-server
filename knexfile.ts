@@ -12,4 +12,9 @@ module.exports = {
         directory: path.resolve(__dirname, 'src', 'database', 'seeds'),
     },
     useNullAsDefault: true,
+    pool: {
+        afterCreate: (conn: any, done: any) => {
+            conn.run('PRAGMA foreign_keys = ON', done);
+        },
+    },
 };
